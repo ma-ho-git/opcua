@@ -1,5 +1,5 @@
 import asyncio
-from controller import ClientController
+from archiv.controller import ClientController
 
 if __name__ == "__main__":
     try:
