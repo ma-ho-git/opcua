@@ -103,7 +103,7 @@ class DemoOpcServer:
         """Server starten und Hintergrund-Loop für Demo-Daten anstoßen."""
         self.server.start()
         print(f"Server läuft auf {self.server.endpoint.geturl()} - zum Beenden: ctrl+c ")
-        #self._run_main_loop()
+        self._run_main_loop()
 
     def stop(self, *_: object) -> None:
         """Server herunterfahren."""
@@ -112,16 +112,16 @@ class DemoOpcServer:
         sys.exit(0)
 
     # --------------------------------------------------------------------- #
-    # def _run_main_loop(self) -> None:
-    #     """Aktualisiert die Demo-Variablen bis zum Abbruch (Strg +C)."""
-    #     i = 0
-    #     while True:
-    #         self.temp.set_value(i * 0.25, ua.VariantType.Float)
-    #         self.press.set_value(i * 0.26, ua.VariantType.Float)
-    #         self.flow.set_value(i * 0.27, ua.VariantType.Float)
-    #         self.flow2.set_value(i * 0.15, ua.VariantType.Float)
-    #         sleep(1)
-    #         i += 1
+    def _run_main_loop(self) -> None:
+         """Aktualisiert die Demo-Variablen bis zum Abbruch (Strg +C)."""
+         i = 0
+         while True:
+             #self.temp.set_value(i * 0.25, ua.VariantType.Float)
+             #self.press.set_value(i * 0.26, ua.VariantType.Float)
+             #self.flow.set_value(i * 0.27, ua.VariantType.Float)
+             #self.flow2.set_value(i * 0.15, ua.VariantType.Float)
+             sleep(1)
+             i += 1
 
 
 # ------------------------------------------------------------------------- #
@@ -138,7 +138,7 @@ def main(argv: List[str] | None = None) -> None:
 
     srv = DemoOpcServer(endpoint=args.endpoint)
 
-    # Ctrl+C / SIGINT sauber abfangen
+    # Ctrl+C / SIGINT abfangen
     signal.signal(signal.SIGINT, srv.stop)
     signal.signal(signal.SIGTERM, srv.stop)
 
