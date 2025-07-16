@@ -10,8 +10,8 @@ from typing import List
 
 from asyncua import ua
 
-from model import OPCUAClientModel, NodeEntry, load_config
-from view import ConsoleView
+from archiv.model import OPCUAClientModel, NodeEntry, load_config
+from archiv.view import ConsoleView
 
 
 class ClientController:
