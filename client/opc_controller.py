@@ -41,7 +41,6 @@ class ClientController:
     # ------------------------------------------------------------------
     async def _main_loop(self) -> None:
         """Untermenue fuer eine Kategorie mit Navigation ueber Child-Nodes."""
-        groups = self._group_by_child(items)
         while True:
             items = await self.model.collect_items()
             categories = self._group_by_class(items)
@@ -65,6 +64,7 @@ class ClientController:
     # ------------------------------------------------------------------
     async def _category_loop(self, name: str, items: List[NodeEntry]) -> None:
         """Untermenue fuer eine Kategorie."""
+        groups = self._group_by_child(items)
         while True:
             choice = await self.view.choose_child_node(name, list(groups.keys()))
             if choice == "m":
