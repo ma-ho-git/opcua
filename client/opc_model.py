@@ -106,12 +106,14 @@ class OPCUAClientModel:
         ]
 
         # Verwende die Hilfsfunktion der Node-Klasse zum Aufruf
-        result = await parent.call_method(method_node, *parsed_args)
+        result = await parent.call_method(method_node.nodeid, *parsed_args)
         return result
 
     # ------------------------------------------------------------------
     @staticmethod
-    def _convert_string_to_variant(text: str, vtype: ua.VariantType) -> object:
+    def _convert_string_to_variant(
+        text: str, vtype: ua.VariantType | ua.VariantTypeCustom
+    ) -> object:
         """Einfache Typumwandlung der Benutzereingabe."""
         try:
             if vtype in (
