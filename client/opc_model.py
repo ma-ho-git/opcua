@@ -99,15 +99,14 @@ class OPCUAClientModel:
             raise ValueError("Argumentanzahl stimmt nicht")
 
         parsed_args = [
-            self._convert_string_to_variant(txt, ua.VariantType(arg.DataType))
+            self._convert_string_to_variant(
+                txt, ua.datatype_to_varianttype(arg.DataType)
+            )
             for arg, txt in zip(inargs, arg_texts, strict=True)
         ]
 
-        result = await self._client.uaclient.call_method(  # type: ignore[attr-defined]
-            parent.nodeid,
-            method_node.nodeid,
-            *parsed_args,
-        )
+        # Verwende die Hilfsfunktion der Node-Klasse zum Aufruf
+        result = await parent.call_method(method_node, *parsed_args)
         return result
 
     # ------------------------------------------------------------------

@@ -68,7 +68,8 @@ class ConsoleView:
             return []
         args: List[str] = []
         for arg in inargs:
-            prompt = f"{arg.Name} ({ua.VariantType(arg.DataType).name}) = "
+            vtype = ua.datatype_to_varianttype(arg.DataType)
+            prompt = f"{arg.Name} ({vtype.name}) = "
             args.append(await ainput(prompt))
         return args
 
